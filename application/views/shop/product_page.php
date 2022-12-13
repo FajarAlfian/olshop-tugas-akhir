@@ -39,25 +39,6 @@
 					</div>
 					<!-- /.card -->
 
-					<div class="card card-outline-secondary my-4">
-						<div class="card-header">
-							Penilaian Produk
-						</div>
-						<div class="card-body">
-							<?php foreach($reviews as $review):?>
-								<p><?= $review->review; ?></p>
-								<small class="text-muted">Dinilai oleh <?= $review->username; ?> on <?= date_format(date_create($review->post_time), "d M Y");?></small>
-								<hr>
-							<?php endforeach; ?>
-							<?= form_open('product/addReview'); ?>
-								<input type="hidden" name="product_id" value="<?= $product_id; ?>"/>
-								<textarea id="textarea" class="form-control" name="review" <?= $disabled; ?>></textarea>
-								<br>
-								<button type="submit" class="btn btn-success" <?= $disabled; ?>>Beri Penilaian</button>
-							<?= form_close(); ?>
-						</div>
-					</div>
-					<!-- /.card-->
 
 				</div>
 				<!-- /.col-lg-9 -->

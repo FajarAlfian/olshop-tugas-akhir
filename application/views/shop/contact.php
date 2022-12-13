@@ -25,7 +25,7 @@
 <!-- Footer -->
 <footer class="py-5 mt-5 bg-dark">
 			<div class="container">
-				<p class="m-0 text-center text-white">Copyright &copy; Toko jaya/p>
+				<p class="m-0 text-center text-white">Copyright &copy; Toko jaya <p>
 			</div>
 			<!-- /.container -->
 		</footer>

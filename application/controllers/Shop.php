@@ -56,8 +56,6 @@ class Shop extends CI_Controller {
             "contact" => null
         );
         $active['home'] = "active";
-        // echo $page*$config['per_page'];
-        // $active['title'] = " - Home";
         
         
         $this->load->view('layout/shop/header', $active);
@@ -96,67 +94,6 @@ class Shop extends CI_Controller {
         $this->load->view('layout/shop/header', $active);
         $this->load->view('shop/about_page');
         $this->load->view('layout/shop/footer');
-    }
-    
-    public function contact() {
-        $active = array(
-            "home" => null,
-            "about" => null,
-            "contact" => null
-        );
-        $active['contact'] = "active";
-        $active['title'] = " - Kontak";
-        $this->load->view('layout/shop/header', $active);
-        $this->load->view('shop/contact');
-        $this->load->view('layout/shop/footer');
-    }
-
-    public function addContact() {
-        $this->form_validation->set_rules(
-            'full_name', 'Nama Lengkap',
-            'required|min_length[5]|max_length[100]',
-            array(
-                'required' => $this->dangerAlert('Anda belum melengkapi %s anda.'),
-                'max_length' => $this->dangerAlert('{field} anda tidak boleh melebihi {param} karakter'),
-                'min_length' => $this->dangerAlert('{field} setidaknya harus sepanjang {param} karakter')
-            )
-        );
-
-        $this->form_validation->set_rules(
-            'e-mail', 'E-Mail',
-            'required|valid_email',
-            array(
-                'required' => $this->dangerAlert('Anda belum melengkapi %s anda.'),
-                'valid_email' => $this->dangerAlert('Email anda tidak valid')
-            )
-        );
-
-        $this->form_validation->set_rules(
-            'message', 'Pesan',
-            'required|min_length[30]|max_length[500]',
-            array(
-                'required' => $this->dangerAlert('Anda belum melengkapi %s anda.'),
-                'max_length' => $this->dangerAlert('{field} anda tidak boleh melebihi {param} karakter'),
-                'min_length' => $this->dangerAlert('{field} setidaknya harus sepanjang {param} karakter')
-            )
-        );
-
-        if ($this->form_validation->run() == FALSE) {
-            $this->contact();
-        } else {
-            $data['full_name'] = $this->input->post('full_name');
-            $data['email'] = $this->input->post('e-mail');
-            $data['message'] = $this->input->post('message');
-            $insert = $this->contact_model->addMessage($data);
-            if ($insert) {
-                $message = $this->successAlert('Pesan anda berhasil terkirim!');
-            } else {
-                $message = $this->dangerAlert('Gagal mengirim pesan');
-            }
-            $this->session->set_flashdata('message', $message);
-            redirect('shop/contact');
-        }
-
     }
 
     public function dangerAlert($message) {

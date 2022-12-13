@@ -1,4 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+require APPPATH.'core/My_Controller.php';
 class Product extends My_Controller {
 
     public function __construct() {
